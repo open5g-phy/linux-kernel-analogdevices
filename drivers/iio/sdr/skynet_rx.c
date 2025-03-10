@@ -215,7 +215,9 @@ static IIO_DEVICE_ATTR(rgf_overflow, S_IRUGO,
 static IIO_DEVICE_ATTR(num_disconnects, S_IRUGO,
 	show_reg, NULL, 0xC034 - 0x4000);
 static IIO_DEVICE_ATTR(allowed_ssb_misses, S_IWUSR | S_IRUGO,
-	show_reg, set_reg_int, 0xC056 - 0x4000);
+	show_reg, set_reg_int, 0xC050 - 0x4000);
+static IIO_DEVICE_ATTR(enable_rx2, S_IWUSR | S_IRUGO,
+	show_reg, set_reg_int, 0xC054 - 0x4000);
 
 // pss_detector regmap
 static IIO_DEVICE_ATTR(detection_shift, S_IRUGO,
