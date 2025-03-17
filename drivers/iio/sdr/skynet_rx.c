@@ -245,6 +245,7 @@ static struct attribute *skynet_rx_attributes[] = {
 	&iio_dev_attr_num_disconnects.dev_attr.attr,
 	&iio_dev_attr_detection_shift.dev_attr.attr,
 	&iio_dev_attr_allowed_ssb_misses.dev_attr.attr,
+	&iio_dev_attr_enable_rx2.dev_attr.attr,
 	&iio_dev_attr_require_single_peak.dev_attr.attr,
 	&iio_dev_attr_nfft.dev_attr.attr,
 	&iio_dev_attr_dna_low.dev_attr.attr,
