@@ -11,6 +11,7 @@
 #include <linux/dmaengine.h>
 #include <linux/platform_device.h>
 #include <linux/of.h>
+#include <linux/fs.h>
 
 #include <linux/iio/iio.h>
 #include <linux/iio/sysfs.h>
@@ -207,6 +208,26 @@ static ssize_t set_reg_int(struct device *dev,
 	return len;
 }
 
+static ssize_t show_serial(struct device *dev,
+	struct device_attribute *attr,
+	char *buf)
+{
+	char serial_str[100];
+	struct file *filep = NULL;
+	filep = filp_open("/etc/skynet", O_RDONLY, 0);
+	if (filep == NULL) {
+		strncpy(serial_str, "error opening /etc/skynet", sizeof(serial_str));
+	}
+	else {
+		ssize_t bytes_read = 0;
+		bytes_read = kernel_read(filep, serial_str, sizeof(serial_str), 0);
+		serial_str[bytes_read] = '\0';
+		filp_close(filep, NULL);	
+	}
+
+	return sysfs_emit(buf, "%s\n", serial_str);
+}
+
 // frame_sync regmap
 static IIO_DEVICE_ATTR(fs_status, S_IRUGO,
 	show_reg, NULL, 0xC014 - 0x4000);
@@ -237,6 +258,9 @@ static IIO_DEVICE_ATTR(dna_low, S_IRUGO,
 static IIO_DEVICE_ATTR(dna_high, S_IRUGO,
 	show_reg, NULL, 0x8044 - 0x4000);
 
+static IIO_DEVICE_ATTR(serial, S_IRUGO,
+	show_serial, NULL, 0x0);
+
 static struct attribute *skynet_rx_attributes[] = {
 	&iio_dev_attr_git_hash.dev_attr.attr,
 	&iio_dev_attr_fs_status.dev_attr.attr,
@@ -250,6 +274,7 @@ static struct attribute *skynet_rx_attributes[] = {
 	&iio_dev_attr_nfft.dev_attr.attr,
 	&iio_dev_attr_dna_low.dev_attr.attr,
 	&iio_dev_attr_dna_high.dev_attr.attr,
+	&iio_dev_attr_serial.dev_attr.attr,
 	NULL,
 };
 
