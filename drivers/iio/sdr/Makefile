@@ -7,3 +7,4 @@
 
 obj-$(CONFIG_SKYNET_RX)			+= skynet_rx.o
 obj-$(CONFIG_SKYNET_TX)			+= skynet_tx.o
+obj-$(CONFIG_SKYNET_CLK)		+= skynet_clk.o

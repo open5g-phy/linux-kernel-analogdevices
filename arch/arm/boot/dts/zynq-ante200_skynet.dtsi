@@ -295,6 +295,11 @@
 			dma-names = "tx";
         };
 
+        skynet_clk: skynet_clk@7c4F0000 {
+			compatible = "catkira,skynet_clk-1.00.a";
+			reg = <0x7c4F0000 0x10000>;
+        };
+
 		cf_ad9364_adc_core_0: cf-ad9361-lpc@79020000 {
 			compatible = "adi,axi-ad9361-6.00.a";
 			reg = <0x79020000 0x6000>;

@@ -26,4 +26,12 @@ config SKYNET_TX
 	  To compile this driver as a module, choose M here: the
 	  module will be called Skynet_TX.
 
+config SKYNET_CLK
+	tristate "Skynet_CLK"
+	help
+	  Say yes to choose the Skynet_CLK.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called Skynet_CLK.
+
 endmenu
