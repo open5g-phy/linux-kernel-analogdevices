@@ -215,7 +215,7 @@ static ssize_t show_serial(struct device *dev,
 	char serial_str[100];
 	struct file *filep = NULL;
 	filep = filp_open("/etc/skynet", O_RDONLY, 0);
-	if (filep == NULL) {
+	if (IS_ERR(filep)) {
 		strncpy(serial_str, "error opening /etc/skynet", sizeof(serial_str));
 	}
 	else {
