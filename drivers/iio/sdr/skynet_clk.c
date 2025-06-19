@@ -145,7 +145,6 @@ static int sdr_probe(struct platform_device *pdev)
 	struct iio_dev *indio_dev;
 	struct axiadc_state *st;
 	struct resource *mem;
-	int ret;
 
 	id = of_match_node(sdr_of_match, pdev->dev.of_node);
 	if (!id)
