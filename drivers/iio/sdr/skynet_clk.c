@@ -13,7 +13,7 @@
 #include <linux/of.h>
 
 #include <linux/iio/iio.h>
-#include <linux/iio/sysfs.h>3
+#include <linux/iio/sysfs.h>
 #include <linux/iio/buffer.h>
 #include <linux/iio/hw-consumer.h>
 
